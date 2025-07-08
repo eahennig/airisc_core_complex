@@ -32,10 +32,12 @@ BASE_DIR = $(abspath .)
 
 # User configuration - hardware (zedboardRevD / NexysVideo / CmodA7)
 # zedboardRevD: http://zedboard.org/product/zedboard
+# Nexys4DDR: https://digilent.com/reference/programmable-logic/nexys-4-ddr/start
 # NexysVideo: https://reference.digilentinc.com/reference/programmable-logic/nexys-video/start
 # Cmod A7 (-35T): https://store.digilentinc.com/cmod-a7-breadboardable-artix-7-fpga-module/
 # -----------------------------------------------------------------------------
-BOARD = NexysVideo
+BOARD = Nexys4DDR
+#BOARD = NexysVideo
 #BOARD = ArtyA7
 #BOARD = CmodA7
 
@@ -46,7 +48,9 @@ CONFIG = AIRI5C_BASIC_FPGA
 
 # User configuration - Vivado version (2019.2-tested / 2020.2-tested)
 # ----------------------------------------------------------------------------
-VIVADO_VER = 2020.2
+#VIVADO_VER = 2020.2
+#VIVADO_VER = 2023.2
+VIVADO_VER = 2025.1
 
 # Other configurations
 # -----------------------------------------------------------------------------
@@ -86,6 +90,11 @@ else ifeq ($(BOARD), zybo)
 	PART = xc7z010clg400-1
 	UBOOT_CONFIG = zybo
 	ZYNQ_CONFIG = Zybo-10 
+else ifeq ($(BOARD), Nexys4DDR)
+        BOARD_MODEL = digilentinc.com:nexys4_ddr:part0:1.1
+        PART = xc7a100tcsg324-1
+        UBOOT_CONFIG = none
+        ZYNQ_CONFIG = none
 else ifeq ($(BOARD), NexysVideo)
         BOARD_MODEL = digilentinc.com:nexys_video:part0:1.1
         PART = xc7a200tsbg484-1
