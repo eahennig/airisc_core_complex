@@ -27,7 +27,7 @@
 //                    well with a single port SRAM IP. 
 //
 `ifndef HASTI_ADDR_WIDTH
-  `include "../../../base-core/src/airi5c_hasti_constants.vh"
+  `include "airi5c_hasti_constants.vh"
 `endif
 //`include "airi5c_arch_options.vh"
 `timescale 1ns/1ns

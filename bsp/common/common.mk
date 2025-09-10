@@ -20,7 +20,7 @@
 # USER CONFIGURATION
 # -----------------------------------------------------------------------------
 # User's application sources (*.c, *.cpp, *.s, *.S); add additional files here
-APP_SRC ?= $(wildcard ./*.c) $(wildcard ./*.s) $(wildcard ./*.cpp) $(wildcard ./*.S)
+APP_SRC ?= $(wildcard *.c) $(wildcard *.s) $(wildcard *.cpp) $(wildcard *.S)
 
 # User's application include folders (don't forget the '-I' before each entry)
 APP_INC ?= -I .
@@ -31,10 +31,10 @@ ASM_INC ?= -I .
 EFFORT ?= -Os
 
 # Compiler toolchain
-RISCV_PREFIX ?= riscv32-unknown-elf-
+RISCV_PREFIX ?= riscv-none-elf-
 
 # CPU architecture and ABI
-MARCH ?= rv32i
+MARCH ?= rv32i_zicsr
 MABI  ?= ilp32
 
 # User flags for additional configuration (will be added to compiler flags)
@@ -71,7 +71,6 @@ LD_SCRIPT = $(AIRISC_COM_PATH)/link.ld
 # Path to elf2hex executable
 ELF2HEX_BIN = $(AIRISC_HOME)/external/elf2hex/elf2hex
 
-
 # -----------------------------------------------------------------------------
 # Sources and objects
 # -----------------------------------------------------------------------------
@@ -86,7 +85,6 @@ SRC += $(CORE_SRC)
 
 # Define all object files
 OBJ = $(SRC:%=%.o)
-
 
 # -----------------------------------------------------------------------------
 # Tools and flags
@@ -120,8 +118,8 @@ asm: $(APP_ASM)
 elf: $(APP_ELF)
 mem: $(APP_MEM)
 bin: $(APP_BIN)
-all: $(APP_ASM) $(APP_ELF) $(APP_MEM) $(APP_BIN)
-
+#all: $(APP_ASM) $(APP_ELF) $(APP_MEM) $(APP_BIN)
+all: $(APP_ASM) $(APP_ELF) $(APP_BIN)
 
 # -----------------------------------------------------------------------------
 # General targets: Assemble, compile, link, dump

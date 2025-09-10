@@ -63,17 +63,28 @@ typedef struct
   uint32_t CTRL;           // control and data register
 } TRNG_t __attribute__((aligned(4)));
 
+// Digilent Nexys4 DDR 7-segment display
+typedef struct
+{
+  uint32_t DATA_L;         // Left 7-segement display group data
+  uint32_t DATA_R;         // Right 7-segement display group data
+  uint32_t BRIGHT_L;       // Left 7-segement display group brightness
+  uint32_t BRIGHT_R;       // Right 7-segement display group brightness
+  uint32_t EN;             // Display enable
+} DISP7SEG_t __attribute__((aligned(4)));
+
 
 /**********************************************************************//**
  * Peripheral map (DEFAULT configuration, see src/airi5c_arch_options.vh)
  **************************************************************************/
-#define timer0  (((volatile TIMER_t*) (0xC0000100)))
-#define uart0   (((volatile UART_t*)  (0xC0000200)))
+#define timer0    (((volatile TIMER_t*)     (0xC0000100)))
+#define uart0     (((volatile UART_t*)      (0xC0000200)))
 //#define uart1 (((volatile UART_t*)  (0xC0000300)))
-#define spi0    (((volatile SPI_t*)   (0xC0000400)))
-#define spi1    (((volatile SPI_t*)   (0xC0000500)))
-#define gpio0   (((volatile GPIO_t*)  (0xC0000600)))
-#define trng    (((volatile TRNG_t*)  (0xC0000800)))
+#define spi0      (((volatile SPI_t*)       (0xC0000400)))
+#define spi1      (((volatile SPI_t*)       (0xC0000500)))
+#define gpio0     (((volatile GPIO_t*)      (0xC0000600)))
+#define trng      (((volatile TRNG_t*)      (0xC0000800)))
+#define disp7seg  (((volatile DISP7SEG_t*)  (0xC0000900)))
 
 #endif
 

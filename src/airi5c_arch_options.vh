@@ -230,6 +230,10 @@
 `define TRNG_BASE_ADDR          32'hC0000800
 `define TRNG_ADDR_WIDTH         32'd2
 
+// Nexys4 DDR 7-segment display
+`define DISP7SEG_BASE_ADDR      32'hC0000900
+`define DISP7SEG_ADDR_WIDTH     32'd8
+
 
 // ==============================================
 // = Performance tweaks / architectural choices =

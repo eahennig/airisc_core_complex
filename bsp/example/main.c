@@ -20,6 +20,7 @@
 #include <stdint.h>
 #include <airisc.h>
 #include <ee_printf.h> // use "embedded" ee_printf (much smaller!) instead of stdio's printf
+#include <airisc_nexys4_ddr_disp7seg.h>
 
 #define CLOCK_HZ   (32000000) // processor clock frequency
 #define UART0_BAUD (9600)     // default Baud rate
@@ -35,13 +36,24 @@ volatile char hello_string[] = {"Hello World!"};
  **************************************************************************/
 int main(void) {
 
-  int i, j, cnt, wait;
+  int i, j, cnt, wait, pos;
 
 
   // configure all GPIO pins (1 = pin is output; 0 = pin is input)
   gpio0->EN   = -1; // all configured as outputs
-  gpio0->DATA =  0; // all LEDs off (assuming high-active LEDs)
+  gpio0->DATA =  0x00; // all LEDs off (assuming high-active LEDs)
 
+  disp7seg_init(disp7seg);
+  disp7seg_enable(disp7seg);
+  disp7seg_setBrightness(disp7seg, 0x3f);
+  disp7seg_setChar(disp7seg, 0x37, 7);
+  disp7seg_setChar(disp7seg, 0x4f, 6);
+  disp7seg_setChar(disp7seg, 0x0e, 5);
+  disp7seg_setChar(disp7seg, 0x0e, 4);
+  disp7seg_setChar(disp7seg, 0x7e, 3);
+  disp7seg_setChar(disp7seg, 0x08, 2);
+  disp7seg_setChar(disp7seg, 0x01, 1);
+  disp7seg_setChar(disp7seg, 0x40, 0);
 
   // say hi!
   // setup UART0: ee_printf, STDOUT, STDERR and STDIN are mapped to UART0
@@ -125,11 +137,16 @@ int main(void) {
 
   cnt  = 0;
   wait = 0;
+  pos = 0;
   while(1) {
     gpio0->DATA = (cnt++) & 0xff;
     for (wait=0; wait<(CLOCK_HZ/32); wait++) {
       asm volatile("nop");
     }
+    disp7seg_rollLeft(disp7seg);
+    disp7seg_setBrightnessChar(disp7seg, 0x3f, 7-pos);
+    pos = (pos + 1) % 8;
+    disp7seg_setBrightnessChar(disp7seg, 0xff, 7-pos);
   }
 
   return 0;
