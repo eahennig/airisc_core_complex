@@ -181,7 +181,7 @@ set files [list \
  [file normalize "${origin_dir}/../src/airi5c_src_b_mux.v"] \
  [file normalize "${origin_dir}/../src/airi5c_wb_src_mux.v"] \
  [file normalize "${origin_dir}/../src/modules/airi5c_timer/src/airi5c_timer.v"] \
- [file normalize "${origin_dir}/../tb/configs/airi5c_top_asic.v"] \
+ [file normalize "${origin_dir}/../tb/configs/airi5c_top_nexys4_ddr.v"] \
  [file normalize "${origin_dir}/../src/modules/airi5c_uart/src/airi5c_uart_constants.vh"] \
  [file normalize "${origin_dir}/../src/modules/airi5c_uart/src/airi5c_uart.v"] \
  [file normalize "${origin_dir}/../src/modules/airi5c_uart/src/airi5c_uart_fifo.v"] \
@@ -219,7 +219,8 @@ set files [list \
  [file normalize "${origin_dir}/../src/modules/airi5c_fpu/airi5c_splitter.v"] \
  [file normalize "${origin_dir}/../external/neoTRNG/rtl/neoTRNG.vhd"] \
  [file normalize "${origin_dir}/../src/modules/airi5c_trng/src/airi5c_trng.v"] \
- [file normalize "${origin_dir}/src_Nexys4DDR/verilog/FPGA_Top.v"] \
+ [file normalize "${origin_dir}/src_Nexys4DDR/verilog/FPGA_Nexys4_DDR_Top.v"] \
+ [file normalize "${origin_dir}/src_Nexys4DDR/verilog/airi5c_nexys4_ddr_7seg_display.v"] \
  [file normalize "${origin_dir}/src_Nexys4DDR/ip/clk_wiz_0.xcix"] \
  [file normalize "${origin_dir}/src_Nexys4DDR/ip/blk_mem_gen_0.xcix"] \
  [file normalize "${origin_dir}/../src/modules/airi5c_mul_div/src/airi5c_mul_div.v"] \
@@ -287,7 +288,7 @@ if { ![get_property "is_locked" $file_obj] } {
 
 # Set 'sources_1' fileset properties
 set obj [get_filesets sources_1]
-set_property -name "top" -value "FPGA_Top" -objects $obj
+set_property -name "top" -value "FPGA_Nexys4_DDR_Top" -objects $obj
 set_property -name "top_auto_set" -value "0" -objects $obj
 
 # Create 'constrs_1' fileset (if not found)

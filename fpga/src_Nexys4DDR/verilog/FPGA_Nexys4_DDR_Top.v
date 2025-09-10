@@ -19,7 +19,7 @@
 `define DUAL_PORT
 //`undef  DUAL_PORT
 
-module FPGA_Top_Nexys4_DDR
+module FPGA_Nexys4_DDR_Top
 (
     input           nRESET,
     input           CLK,
